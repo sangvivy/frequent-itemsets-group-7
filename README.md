@@ -107,10 +107,7 @@ def is_maximal(itemset):
 
 ### How to Run the Code
 1.	Clone the repository
-2.	Install dependencies:
-bash
-CopyEdit
-pip install pandas mlxtend
+2.	Install dependencies:pip install pandas mlxtend
 3.	Run the Python script or Jupyter Notebook
 4.	View outputs in terminal or exported CSV files
 
