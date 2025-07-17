@@ -37,13 +37,11 @@ random.seed(42)  # For reproducibility
 
 ### 2. One-Hot Encoding
 
- Contributed by Vivian
+ **Contributed by Vivian**
 
-•	Converts the transaction list into a binary (0/1) format required by mlxtend's Apriori algorithm.
-
-•	Each column represents an item; each row represents a transaction.
-
-•	We also save the raw transactions for transparency.
+-	Converts the transaction list into a binary (0/1) format required by mlxtend's Apriori algorithm.
+-	Each column represents an item; each row represents a transaction.
+-	We also save the raw transactions for transparency.
 
 ```python
 te = TransactionEncoder()
@@ -52,25 +50,21 @@ df = pd.DataFrame(te_ary, columns=te.columns_)
 ```
 
 ### 3. Generate Frequent Itemsets
- Contributed by Rosamistica
+ **Contributed by Rosamistica**
 
-•	We apply the Apriori algorithm from mlxtend.frequent_patterns with min_support = 0.05 (5%).
-
-•	The top 10 most frequent itemsets are displayed.
-
-•	All frequent itemsets are saved in frequent_itemsets.csv.
+-	We apply the Apriori algorithm from mlxtend.frequent_patterns with min_support = 0.05 (5%).
+-	The top 10 most frequent itemsets are displayed.
+-	All frequent itemsets are saved in frequent_itemsets.csv.
 
 ```python
 frequent_itemsets = apriori(df, min_support=0.05, use_colnames=True)
 ```
 ### 4. Identify Closed Frequent Itemsets
- Contributed by Faith
+ **Contributed by Faith**
 
-•	A closed itemset is one that has no superset with the same support.
-
-•	We check this by comparing each itemset to all others.
-
-•	Closed itemsets are saved in closed_itemsets.csv.
+-	A closed itemset is one that has no superset with the same support.
+-	We check this by comparing each itemset to all others.
+-	Closed itemsets are saved in closed_itemsets.csv.
 
 ```python
 def is_closed(itemset, support):
@@ -81,13 +75,11 @@ def is_closed(itemset, support):
 ```
 
 ### 5. Identify Maximal Frequent Itemsets
- Contributed by Innocent
+ **Contributed by Innocent**
 
-•	A maximal itemset has no frequent superset at all.
-
-•	This is useful for reducing redundancy when mining rules.
-
-•	Maximal itemsets are saved in maximal_itemsets.csv.
+-	A maximal itemset has no frequent superset at all.
+-	This is useful for reducing redundancy when mining rules.
+-	Maximal itemsets are saved in maximal_itemsets.csv.
 
 ```python
 def is_maximal(itemset):
@@ -107,13 +99,11 @@ def is_maximal(itemset):
 |maximal_itemsets.csv	      |All maximal frequent itemsets
 
 ### Libraries Used
-•	pandas for data manipulation
 
-•	random for simulating data
-
-•	mlxtend for frequent pattern mining
-
-•	IPython.display for clean output (optional in Jupyter)
+-	pandas for data manipulation
+-	random for simulating data
+-	mlxtend for frequent pattern mining
+-	IPython.display for clean output (optional in Jupyter)
 
 ### How to Run the Code
 1.	Clone the repository
