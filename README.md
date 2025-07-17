@@ -5,9 +5,6 @@
  
 **Project Title**: Exploring Frequent Itemsets: Closed vs Maximal in Supermarket Data  
 
-
-
-
 ##  Group Members & Contributions
 
 | Name           | Contribution                                 |
@@ -19,7 +16,6 @@
 | Innocent       |  Maximal frequent itemset detection          |
 
 
-
 ##  Objective
 
 This project simulates 3000 supermarket transactions and applies **frequent pattern mining** using the Apriori algorithm. The goal is to identify and distinguish:
@@ -28,11 +24,6 @@ This project simulates 3000 supermarket transactions and applies **frequent patt
 -  Closed Frequent Itemsets  
 -  Maximal Frequent Itemsets  
 
-
-
-##  Step-by-Step Explanation
-
-
 ### 1. Simulate Supermarket Transactions  
  **Contributed by Hans**
 
@@ -40,23 +31,25 @@ This project simulates 3000 supermarket transactions and applies **frequent patt
 - Then, we randomly generate 3000 transactions.
 - Each transaction contains 2–7 items randomly selected from the item pool.
 
-python
+```python
 random.seed(42)  # For reproducibility
+```
 
 ### 2. One-Hot Encoding
 
  Contributed by Vivian
+
 •	Converts the transaction list into a binary (0/1) format required by mlxtend's Apriori algorithm.
 
 •	Each column represents an item; each row represents a transaction.
 
 •	We also save the raw transactions for transparency.
 
-python
-CopyEdit
+```python
 te = TransactionEncoder()
 te_ary = te.fit(transactions).transform(transactions)
 df = pd.DataFrame(te_ary, columns=te.columns_)
+```
 
 ### 3. Generate Frequent Itemsets
  Contributed by Rosamistica
@@ -67,10 +60,9 @@ df = pd.DataFrame(te_ary, columns=te.columns_)
 
 •	All frequent itemsets are saved in frequent_itemsets.csv.
 
-python
-CopyEdit
+```python
 frequent_itemsets = apriori(df, min_support=0.05, use_colnames=True)
-
+```
 ### 4. Identify Closed Frequent Itemsets
  Contributed by Faith
 
@@ -80,13 +72,13 @@ frequent_itemsets = apriori(df, min_support=0.05, use_colnames=True)
 
 •	Closed itemsets are saved in closed_itemsets.csv.
 
-python
-CopyEdit
+```python
 def is_closed(itemset, support):
     for _, row in frequent_itemsets.iterrows():
         if itemset < row['itemsets'] and support == row['support']:
             return False
     return True
+```
 
 ### 5. Identify Maximal Frequent Itemsets
  Contributed by Innocent
@@ -97,15 +89,15 @@ def is_closed(itemset, support):
 
 •	Maximal itemsets are saved in maximal_itemsets.csv.
 
-python
-CopyEdit
+```python
 def is_maximal(itemset):
     for _, row in frequent_itemsets.iterrows():
         if itemset < row['itemsets']:
             return False
     return True
+```
 
-Output Files
+### Output Files
 
 |File Name	                  |Description
 |-----------------------------|-----------------------------------------
@@ -116,8 +108,11 @@ Output Files
 
 ### Libraries Used
 •	pandas for data manipulation
+
 •	random for simulating data
+
 •	mlxtend for frequent pattern mining
+
 •	IPython.display for clean output (optional in Jupyter)
 
 ### How to Run the Code
