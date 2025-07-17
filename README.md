@@ -1,9 +1,6 @@
 # frequent-itemsets-group-7
 
-#  Frequent Itemset Mining: Closed vs Maximal in Supermarket Data
-
- 
-**Project Title**: Exploring Frequent Itemsets: Closed vs Maximal in Supermarket Data  
+# Project Title: Exploring Frequent Itemsets: Closed vs Maximal in Supermarket Data  
 
 ##  Group Members & Contributions
 
