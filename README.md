@@ -29,7 +29,7 @@ This project simulates 3000 supermarket transactions and applies **frequent patt
 - Each transaction contains 2–7 items randomly selected from the item pool.
 
 ```python
-random.seed(42)  # For reproducibility
+random.seed(42)  # For reproducibility — ensures the same random results each time you run it
 ```
 
 ### 2. One-Hot Encoding
@@ -41,9 +41,10 @@ random.seed(42)  # For reproducibility
 -	We also save the raw transactions for transparency.
 
 ```python
-te = TransactionEncoder()
-te_ary = te.fit(transactions).transform(transactions)
-df = pd.DataFrame(te_ary, columns=te.columns_)
+te = TransactionEncoder() # Create encoder object
+te_ary = te.fit(transactions).transform(transactions)# Transform list of transactions to binary array
+df = pd.DataFrame(te_ary, columns=te.columns_) # Create a DataFrame from binary array
+
 ```
 
 ### 3. Generate Frequent Itemsets
@@ -54,7 +55,7 @@ df = pd.DataFrame(te_ary, columns=te.columns_)
 -	All frequent itemsets are saved in frequent_itemsets.csv.
 
 ```python
-frequent_itemsets = apriori(df, min_support=0.05, use_colnames=True)
+frequent_itemsets = apriori(df, min_support=0.05, use_colnames=True)  # Run Apriori algorithm on the encoded DataFrame
 ```
 ### 4. Identify Closed Frequent Itemsets
  **Contributed by Faith**
@@ -66,7 +67,7 @@ frequent_itemsets = apriori(df, min_support=0.05, use_colnames=True)
 ```python
 def is_closed(itemset, support):
     for _, row in frequent_itemsets.iterrows():
-        if itemset < row['itemsets'] and support == row['support']:
+        if itemset < row['itemsets'] and support == row['support']:# Check if a larger set has the same support
             return False
     return True
 ```
@@ -81,7 +82,7 @@ def is_closed(itemset, support):
 ```python
 def is_maximal(itemset):
     for _, row in frequent_itemsets.iterrows():
-        if itemset < row['itemsets']:
+        if itemset < row['itemsets']: # If there is a superset, it's not maximal
             return False
     return True
 ```
